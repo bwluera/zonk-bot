@@ -9,11 +9,8 @@ class ZonkTrack:
         self.video = video
         self.filename = filename
         self.filepath = filepath
-        self.file: BinaryIO = None
-        self.stream: discord.player.FFmpegPCMAudio = None
-
-    def set_file(self, file: BinaryIO):
-        self.file = file
+        self.file: Optional[BinaryIO] = None
+        self.stream: Optional[discord.player.FFmpegPCMAudio] = None
 
     def stop_playing(self):
         if not self.is_playing():
