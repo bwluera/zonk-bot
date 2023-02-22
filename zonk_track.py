@@ -34,5 +34,8 @@ class ZonkTrack:
         self.file = self.file or open(self.filepath, "rb")
         return self.file
 
+    def set_stream(self, stream):
+        self.stream = stream
+
     def __del__(self):
         self.stop_playing()
