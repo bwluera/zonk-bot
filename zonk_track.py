@@ -16,9 +16,16 @@ class ZonkTrack:
         self.file = file
 
     def stop_playing(self):
-        self.file.close()
-        self.file = None
-        self.stream.cleanup()
+        if not self.is_playing():
+            return
+
+        if self.file and not self.file.closed:
+            self.file.close()
+            self.file = None
+
+        if self.stream:
+            self.stream.cleanup()
+            self.stream = None
 
     def is_playing(self):
         return self.file is not None
