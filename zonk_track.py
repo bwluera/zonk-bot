@@ -28,7 +28,7 @@ class ZonkTrack:
             self.stream = None
 
     def is_playing(self):
-        return self.file is not None
+        return self.stream is not None
 
     def get_file(self):
         self.file = self.file or open(self.filepath, "rb")
