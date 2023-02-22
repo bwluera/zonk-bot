@@ -11,4 +11,4 @@ if __name__ == '__main__':
         print(f"Unable to locate '{TOKEN_FILE_NAME}', exiting.")
         exit(1)
 
-    ZonkHandler.bot.run(token=token)
+    ZonkHandler.execute(token)
