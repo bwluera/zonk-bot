@@ -21,8 +21,9 @@ class ConnectResult(Enum):
 
 class ZonkHandler:
     """The recommended interface to interact with Zonk."""
-    bot: commands.Bot = commands.Bot(command_prefix=".",
+    bot: commands.Bot = commands.Bot(command_prefix=["zonk,", "zonk", "!"],
                                      case_insensitive=True,
+                                     strip_after_prefix=True,
                                      description="Zonks out tunes.",
                                      intents=discord.Intents.all())
     """Hello. This is Zonk."""
