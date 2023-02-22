@@ -19,13 +19,17 @@ class ConnectResult(Enum):
     """Was unable to connect to the requested voice channel."""
 
 
+# TODO: Create HelpCommand extension class, low priority
+
+
 class ZonkHandler:
     """The recommended interface to interact with Zonk."""
     bot: commands.Bot = commands.Bot(command_prefix=["zonk,", "zonk", "!"],
                                      case_insensitive=True,
                                      strip_after_prefix=True,
                                      description="Zonks out tunes.",
-                                     intents=discord.Intents.all())
+                                     intents=discord.Intents.all(),
+                                     help_command=None)
     """Hello. This is Zonk."""
 
     queue: List[ZonkTrack] = []
@@ -35,6 +39,7 @@ class ZonkHandler:
     @staticmethod
     def execute(token: str):
         """Run Zonk."""
+        ZonkHandler.bot.help_command
         ZonkHandler.bot.run(token=token)
 
     @staticmethod
@@ -239,6 +244,11 @@ async def connect(ctx: commands.Context):
 
 
 @ZonkHandler.bot.command()
+async def c(ctx: commands.Context):
+    await connect(ctx)
+
+
+@ZonkHandler.bot.command()
 async def disconnect(ctx: commands.Context):
     """Disconnects Zonk from its current voice channel."""
     if not ZonkHandler.is_connected():
@@ -251,6 +261,11 @@ async def disconnect(ctx: commands.Context):
 
     await ZonkHandler.disconnect()
     await ctx.send(f"Disconnected from `{ctx.channel.name}`.")
+
+
+@ZonkHandler.bot.command()
+async def dc(ctx: commands.Context):
+    await disconnect(ctx)
 
 
 @ZonkHandler.bot.command()
@@ -283,6 +298,11 @@ async def play(ctx: commands.Context, *query_keywords):
 
     # Play current query since no track is playing.
     await ZonkHandler.play_track(ctx, track)
+
+
+@ZonkHandler.bot.command()
+async def p(ctx: commands.Context):
+    await play(ctx)
 
 
 @ZonkHandler.bot.command()
@@ -322,6 +342,11 @@ async def stop(ctx: commands.Context):
 
 
 @ZonkHandler.bot.command()
+async def s(ctx: commands.Context):
+    await stop(ctx)
+
+
+@ZonkHandler.bot.command()
 async def skip(ctx: commands.Context):
     """Skip the current track."""
     if not ZonkHandler.is_connected():
@@ -349,3 +374,8 @@ async def queue(ctx: commands.Context):
             message += "\n"
 
     await ctx.send(message, suppress_embeds=True)
+
+
+@ZonkHandler.bot.command()
+async def q(ctx: commands.Context):
+    await queue(ctx)
