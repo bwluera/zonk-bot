@@ -1,3 +1,4 @@
+"""Contains all Zonk bot logic related to initialization and command/event handling."""
 from enum import Enum
 from typing import List, Optional
 
@@ -9,18 +10,25 @@ from zonk_track import ZonkTrack
 
 
 class ConnectResult(Enum):
+    """A result to be associated with Zonk's attempt to connect to a voice channel."""
     CONNECTED = "Connected"
+    """Successfully connected to the voice channel."""
     MOVED = "Moved"
+    """Moved from its previous voice channel into the requested one."""
     ERROR = "Error"
+    """Was unable to connect to the requested voice channel."""
 
 
 class ZonkHandler:
+    """The recommended interface to interact with Zonk."""
     bot: commands.Bot = commands.Bot(command_prefix=".",
                                      case_insensitive=True,
                                      description="Zonks out tunes.",
                                      intents=discord.Intents.all())
-    _current_track: Optional[ZonkTrack] = None
+    """Hello. This is Zonk."""
+
     queue: List[ZonkTrack] = []
+    _current_track: Optional[ZonkTrack] = None
     _voice_client: Optional[discord.VoiceClient] = None
 
     @staticmethod
@@ -52,7 +60,7 @@ class ZonkHandler:
 
     @staticmethod
     async def disconnect():
-        """Halts track playback, then disconnects Zonk from its voice channel."""
+        """Halts track playback, then safely disconnects Zonk from its voice channel."""
         ZonkHandler.stop_playing()
 
         if ZonkHandler._voice_client:

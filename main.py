@@ -1,8 +1,10 @@
+"""Execute Zonk."""
 from bot import ZonkHandler
 
 if __name__ == '__main__':
     TOKEN_FILE_NAME = "auth_token.txt"
 
+    # Retrieve Zonk's token for authentication purposes.
     try:
         token_file = open(TOKEN_FILE_NAME, "r")
         token = token_file.read()
