@@ -1,5 +1,7 @@
 from os import path
+
 from pytube import YouTube, Search
+
 from zonk_track import ZonkTrack
 
 STREAMS_DIR = "streams"
