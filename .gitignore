@@ -133,3 +133,7 @@ streams/
 
 # Jetbrains IDE config.
 .idea/
+
+# Authentication token.
+auth_token.txt
+auth_token
