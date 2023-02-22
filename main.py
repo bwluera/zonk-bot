@@ -8,7 +8,7 @@ if __name__ == '__main__':
         token = token_file.read()
         print(token)
     except FileNotFoundError as error:
-        print(f"Unable to locate {TOKEN_FILE_NAME}, exiting.")
+        print(f"Unable to locate '{TOKEN_FILE_NAME}', exiting.")
         exit(1)
 
     ZonkHandler.bot.run(token=token)
