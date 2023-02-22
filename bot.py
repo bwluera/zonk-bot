@@ -2,7 +2,7 @@ from typing import List
 
 import discord
 from discord.ext import commands
-from youtube_handler import process_query, STREAMS_DIR
+from youtube_handler import process_query
 from zonk_track import ZonkTrack
 
 
