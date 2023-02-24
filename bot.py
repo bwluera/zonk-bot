@@ -39,14 +39,7 @@ class ZonkHandler:
     @staticmethod
     def execute(token: str):
         """Run Zonk."""
-        ZonkHandler.bot.help_command
         ZonkHandler.bot.run(token=token)
-
-    @staticmethod
-    def set_prefix(prefix: str):
-        """Override the default prefix."""
-        ZonkHandler.bot.command_prefix = prefix
-        # TODO: write new prefix to file?
 
     @staticmethod
     async def connect(voice_channel: discord.VoiceChannel) -> ConnectResult:
