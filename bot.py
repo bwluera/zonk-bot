@@ -5,7 +5,7 @@ from typing import List, Optional
 import discord
 from discord.ext import commands
 
-from youtube_handler import process_query
+from youtube_handler import process_query, delete_stream_files
 from zonk_track import ZonkTrack
 
 
@@ -201,6 +201,7 @@ class ZonkHandler:
         """Removes all tracks, current and in queue. Unsafe - make sure to stop playback."""
         ZonkHandler._current_track = None
         ZonkHandler.clear_queue()
+        delete_stream_files()
 
     @property
     def has_track_loaded(self):
@@ -225,6 +226,7 @@ async def on_voice_state_update(member: discord.Member, _: discord.VoiceState, a
         return
 
     await ZonkHandler.disconnect()
+    ZonkHandler.flush()
 
 
 @ZonkHandler.bot.command()

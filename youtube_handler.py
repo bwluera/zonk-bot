@@ -1,5 +1,5 @@
 """Handles YouTube interfacing for Zonk."""
-from os import path
+from os import DirEntry, path, scandir, remove as remove_file
 
 from pytube import YouTube, Search
 from validators import url
@@ -53,3 +53,14 @@ async def process_query(query: str):
     video = await _get_first_search_result(query)
     zonk_track = await _download_audio_stream(video)
     return zonk_track
+
+
+def delete_stream_files() -> None:
+    """Delete all stream files inside the stream folder.
+    """
+    dir_entry: DirEntry
+    with scandir("streams") as stream_dir:
+        for dir_entry in stream_dir:
+            if dir_entry.is_dir():
+                continue
+            remove_file(dir_entry.path)
