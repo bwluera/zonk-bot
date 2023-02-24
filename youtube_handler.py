@@ -1,5 +1,6 @@
 """Handles YouTube interfacing for Zonk."""
 from os import path
+from validators import url
 
 from pytube import YouTube, Search
 
@@ -10,9 +11,17 @@ __STREAMS_DIR = "streams"
 
 async def _get_first_search_result(query: str):
     """Return the first available search result from YouTube when searching for query.
+    If the query is a URL to a YouTube video, then return that exact video.
     :param query: The keywords to search for.
     :return: The video most related to the query.
     """
+
+    if url(query):
+        if ("youtube.com" not in query) and ("youtu.be" not in query):
+            raise ValueError("This link is not an official YouTube video URL.")
+
+        return YouTube(query)
+
     search = Search(query)
     return None if len(search.results) == 0 else search.results[0]
 
