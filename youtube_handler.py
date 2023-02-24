@@ -1,8 +1,8 @@
 """Handles YouTube interfacing for Zonk."""
 from os import path
-from validators import url
 
 from pytube import YouTube, Search
+from validators import url
 
 from zonk_track import ZonkTrack
 

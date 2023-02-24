@@ -7,6 +7,7 @@ from pytube import YouTube
 
 class ZonkTrack:
     """Represents audio to be played by Zonk with some useful metadata."""
+
     def __init__(self, video: YouTube, filename: str, filepath: str):
         self.video = video
         self.filename = filename
