@@ -15,10 +15,10 @@ and YouTube, respectively.
 ###### Whitespace does not matter. `!play` = `! play` = `zonk play` = `zonk, play`
 
 - **play** `query`: Searches YouTube for `query` and plays the most 
-relevant video.
+relevant video. Alias: `p`
 - **seek** `time`: Plays the current video beginning at `time` seconds.
-- **stop**: Stops playback and clears the queue.
+- **stop**: Stops playback and clears the queue. Alias: `s`
 - **pause**: Pauses playback.
-- **connect**: Connects to your voice channel.
-- **disconnect**: Disconnects from the voice channel.
-- **queue**: Shows the videos in queue.
+- **connect**: Connects to your voice channel. Alias: `c`
+- **disconnect**: Disconnects from the voice channel. Alias: `dc`
+- **queue**: Shows the videos in queue. Alias: `q`
