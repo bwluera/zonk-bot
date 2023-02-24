@@ -5,7 +5,7 @@ from pytube import YouTube, Search
 
 from zonk_track import ZonkTrack
 
-STREAMS_DIR = "streams"
+__STREAMS_DIR = "streams"
 
 
 async def _get_first_search_result(query: str):
@@ -24,7 +24,7 @@ async def _download_audio_stream(video: YouTube):
     """
     audio_stream = video.streams.get_audio_only("mp4")
     filename = video.video_id
-    audio_path = path.join(STREAMS_DIR, filename)
+    audio_path = path.join(__STREAMS_DIR, filename)
 
     track = ZonkTrack(video, filename, audio_path)
 
