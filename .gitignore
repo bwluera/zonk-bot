@@ -137,3 +137,6 @@ streams/
 # Authentication token.
 auth_token.txt
 auth_token
+
+# Personal directory of releases.
+releases/
