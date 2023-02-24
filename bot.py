@@ -37,7 +37,7 @@ class ZonkHandler:
     _voice_client: Optional[discord.VoiceClient] = None
 
     @staticmethod
-    def execute(token: str):
+    def execute(token: str) -> None:
         """Run Zonk."""
         ZonkHandler.bot.run(token=token)
 
@@ -68,12 +68,12 @@ class ZonkHandler:
             ZonkHandler._voice_client = None
 
     @staticmethod
-    def cleanup_voice_client():
+    def cleanup_voice_client() -> None:
         """Required to be called after disconnecting from a channel. ZonkHandler#disconnect does this automatically."""
         ZonkHandler._voice_client.cleanup()
 
     @staticmethod
-    def is_connected():
+    def is_connected() -> bool:
         """Returns whether Zonk is currently connected to a channel."""
         if ZonkHandler._voice_client is None:
             return False
@@ -87,7 +87,7 @@ class ZonkHandler:
         return ZonkHandler._voice_client.channel
 
     @staticmethod
-    def toggle_playback():
+    def toggle_playback() -> None:
         """Pauses playback if the track is currently playing, or resumes playback if it isn't."""
         if ZonkHandler._voice_client.is_paused():
             ZonkHandler._voice_client.resume()
@@ -95,12 +95,12 @@ class ZonkHandler:
             ZonkHandler._voice_client.pause()
 
     @staticmethod
-    def is_paused():
+    def is_paused() -> bool:
         """Returns whether the track playback is paused."""
         return ZonkHandler._voice_client.is_paused()
 
     @staticmethod
-    def stop_playing():
+    def stop_playing() -> None:
         """Stop track playback if any track is currently playing."""
         if not ZonkHandler.is_playing():
             return
@@ -111,7 +111,7 @@ class ZonkHandler:
         ZonkHandler._voice_client.stop()
 
     @staticmethod
-    def is_playing():
+    def is_playing() -> bool:
         """Returns whether a track is being played in a voice channel."""
         if not ZonkHandler.is_connected():
             return False
